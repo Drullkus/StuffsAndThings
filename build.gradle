@@ -1,0 +1,122 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+    dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT' }
+}
+
+apply plugin: 'forge'
+apply plugin: 'curseforge'
+
+version = "$minecraft_version-$version"
+
+minecraft {
+    version = "$minecraft_version-$forge_version"
+    //mappings = mcp_mappings_version
+    runDir = "run"
+}
+
+repositories {
+    ivy {
+        name "CoFHCore"
+        artifactPattern 'http://addons-origin.cursecdn.com/files/2229/536/[module]-[revision].[ext]'
+    }
+    ivy {
+        name "ThermalExpansion"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/552/[module]-[revision].[ext]"
+    }
+    ivy {
+        name "ThermalFoundation"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/339/[module]-[revision].[ext]"
+    }
+    maven { url 'http://dvs1.progwml6.com/files/maven' } // Mantle
+    maven { url "http://mobiusstrip.eu/maven" } // Waila
+    maven { url "http://chickenbones.net/maven/" } // CodeChicken Stuff
+}
+
+dependencies {
+    compile group: 'cofh', name: 'CoFHCore', version: "[$minecraft_version]$cofhcore_version-dev", ext: 'jar'
+    compile group: 'cofh', name: 'ThermalExpansion', version: "[$minecraft_version]$thermalexpansion_version-dev", ext: 'jar'
+    compile group: 'cofh', name: 'ThermalFoundation', version: "[$minecraft_version]$thermalfoundation_version-dev", ext: 'jar'
+
+    compile "mantle:Mantle:$minecraft_version-$mantle_version:deobf"
+    compile "tconstruct:TConstruct:$minecraft_version-$tconstruct_version:deobf"
+    compile "codechicken:CodeChickenLib:$minecraft_version-$cclib_version:dev"
+    compile "codechicken:CodeChickenCore:$minecraft_version-$ccc_version:dev"
+    compile "codechicken:NotEnoughItems:$minecraft_version-$nei_version:dev"
+    compile "mcp.mobius.waila:Waila:${waila_version}_$minecraft_version:dev"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    inputs.property "description", project.description
+
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
+
+        expand([
+                'version'    : project.version,
+                'mcversion'  : project.minecraft.version,
+                'description': project.description
+        ])
+
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+        exclude '**/*.properties'
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+tasks.withType(JavaCompile) { task ->
+    task.options.encoding = 'UTF-8'
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+    archives deobfJar
+}
+
+curse {
+    dependsOn build
+    onlyIf { return project.hasProperty('curseforge_key') }
+    if (project.hasProperty('curseforge_key')) {
+        apiKey = project.curseforge_key
+    }
+
+    projectId = curseforge_project_id
+    releaseType = 'release'
+
+    additionalArtifact sourcesJar, javadocJar, deobfJar
+
+    relatedProject 'tinkers-construct': 'requiredLibrary'
+    relatedProject 'mantle': 'requiredLibrary'
+    relatedProject 'thermalexpansion': 'optionalLibrary'
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
