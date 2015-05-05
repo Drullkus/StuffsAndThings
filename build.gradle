@@ -19,30 +19,11 @@ minecraft {
 }
 
 repositories {
-    ivy {
-        name "CoFHCore"
-        artifactPattern 'http://addons-origin.cursecdn.com/files/2229/536/[module]-[revision].[ext]'
-    }
-    ivy {
-        name "ThermalExpansion"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/552/[module]-[revision].[ext]"
-    }
-    ivy {
-        name "ThermalFoundation"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/339/[module]-[revision].[ext]"
-    }
-    maven { url 'http://dvs1.progwml6.com/files/maven' } // Mantle
     maven { url "http://mobiusstrip.eu/maven" } // Waila
     maven { url "http://chickenbones.net/maven/" } // CodeChicken Stuff
 }
 
 dependencies {
-    compile group: 'cofh', name: 'CoFHCore', version: "[$minecraft_version]$cofhcore_version-dev", ext: 'jar'
-    compile group: 'cofh', name: 'ThermalExpansion', version: "[$minecraft_version]$thermalexpansion_version-dev", ext: 'jar'
-    compile group: 'cofh', name: 'ThermalFoundation', version: "[$minecraft_version]$thermalfoundation_version-dev", ext: 'jar'
-
-    compile "mantle:Mantle:$minecraft_version-$mantle_version:deobf"
-    compile "tconstruct:TConstruct:$minecraft_version-$tconstruct_version:deobf"
     compile "codechicken:CodeChickenLib:$minecraft_version-$cclib_version:dev"
     compile "codechicken:CodeChickenCore:$minecraft_version-$ccc_version:dev"
     compile "codechicken:NotEnoughItems:$minecraft_version-$nei_version:dev"
@@ -109,14 +90,4 @@ curse {
     releaseType = 'release'
 
     additionalArtifact sourcesJar, javadocJar, deobfJar
-
-    relatedProject 'tinkers-construct': 'requiredLibrary'
-    relatedProject 'mantle': 'requiredLibrary'
-    relatedProject 'thermalexpansion': 'optionalLibrary'
-}
-
-idea {
-    module {
-        inheritOutputDirs = true
-    }
 }
