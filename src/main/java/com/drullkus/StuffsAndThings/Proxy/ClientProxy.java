@@ -14,8 +14,8 @@ public class ClientProxy extends CommonProxy {
 
     public static int testRenderID;
 
-    //@SideOnly(Side.CLIENT)
-    //public static IIcon cloudFX;
+    /*@SideOnly(Side.CLIENT)
+    public static IIcon cloudFX;*/
 
     @SideOnly(Side.CLIENT)
     public static IIcon testFX;

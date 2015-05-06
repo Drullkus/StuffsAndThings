@@ -13,7 +13,7 @@ public class CloudAnimFX extends TextureFX {
 
     public CloudAnimFX(int size) {
         super(size, "crack");
-    }
+    } /*
 
     public void setup()
     {
@@ -86,5 +86,5 @@ public class CloudAnimFX extends TextureFX {
 
             this.imageData[var2] = new ColourRGBA(var5, var6, var7, -1).argb();
         }
-    }
+    }*/
 }
