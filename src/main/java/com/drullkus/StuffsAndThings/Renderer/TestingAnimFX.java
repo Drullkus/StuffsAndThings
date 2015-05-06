@@ -74,18 +74,19 @@ public class TestingAnimFX extends TextureFX {
         this.red = var11;
 
         for (int var2 = 0; var2 < this.tileSizeSquare; var2++) {
-            float var3 = this.red[var2] * 3.0F;
+            float var3 = (this.red[var2]-0.2F) * 6.0F;
 
-            if (var3 > 1.0F)
+            while (var3 > 1.0F)
             {
-                var3 = 1.0F;
+                var3 = var3 - 1.0F;
             }
 
-            if (var3 < 0.0F)
+            while (var3 < 0.0F)
             {
-                var3 = 0.0F;
+                var3 = var3 + 1.0F;
             }
 
+            float var4 = var3*6;
             int var5;
             int var6;
             int var7;
@@ -93,12 +94,12 @@ public class TestingAnimFX extends TextureFX {
             if (var3 < 1.0F/6.0F)
             {
                 var5 = 255;
-                var6 = (int)(var3 * 255.0F);
+                var6 = (int)(var4 * 255.0F);
                 var7 = 0;
             }
             else if (var3 < 2.0F/6.0F)
             {
-                var5 = 255-(int)(var3 * 255.0F);
+                var5 = (int)(255-((var4 - (1/6)) * 255.0F));
                 var6 = 255;
                 var7 = 0;
             }
@@ -106,17 +107,17 @@ public class TestingAnimFX extends TextureFX {
             {
                 var5 = 0;
                 var6 = 255;
-                var7 = (int)(var3 * 255.0F);
+                var7 = (int)((var4 - (1/3)) * 255.0F);
             }
             else if (var3 < 4.0F/6.0F)
             {
                 var5 = 0;
-                var6 = 255-(int)(var3 * 255.0F);
+                var6 = (int)(255-((var4 - (1/2)) * 255.0F));
                 var7 = 255;
             }
             else if (var3 < 5.0F/6.0F)
             {
-                var5 = (int)(var3 * 255.0F);
+                var5 = (int)((var4 - (2/3)) * 255.0F);
                 var6 = 0;
                 var7 = 255;
             }
@@ -124,7 +125,7 @@ public class TestingAnimFX extends TextureFX {
             {
                 var5 = 255;
                 var6 = 0;
-                var7 = 255-(int)(var3 * 255.0F);
+                var7 = (int)(255-((var4 - (5/6)) * 255.0F));
             }
             else
             {
@@ -144,13 +145,5 @@ public class TestingAnimFX extends TextureFX {
 
             this.imageData[var2] = new ColourRGBA(var5, var6, var7, -1).argb();
         }
-    }
-
-    public int setColourRGBAFromInt(int color)
-    {
-        float red = (color >> 16 & 255) / 255.0F;
-        float green = (color >> 8 & 255) / 255.0F;
-        float blue = (color & 255) / 255.0F;
-        return new ColourRGBA(red, green, blue, -1).argb();
     }
 }
