@@ -47,12 +47,12 @@ public class TestingAnimFX extends TextureFX {
                 }
 
                 this.green[(y + x * this.tileSizeBase)] =
-                        (v3 / 10.0F +
+                        ((v3 - 3) / 10.0F +
                                 (this.blue[((y + 0 & this.tileSizeMask) + (x + 0 & this.tileSizeMask) * this.tileSizeBase)]
-                                        + this.blue[((y + 1 & this.tileSizeMask) + (x + 0 & this.tileSizeMask) * this.tileSizeBase)]
-                                        + this.blue[((y + 1 & this.tileSizeMask) + (x + 1 & this.tileSizeMask) * this.tileSizeBase)]
-                                        + this.blue[((y + 0 & this.tileSizeMask) + (x + 1 & this.tileSizeMask) * this.tileSizeBase)])
-                                        / 4.0F * 0.8F);
+                               + this.blue[((y + 1 & this.tileSizeMask) + (x + 0 & this.tileSizeMask) * this.tileSizeBase)]
+                               + this.blue[((y + 1 & this.tileSizeMask) + (x + 1 & this.tileSizeMask) * this.tileSizeBase)]
+                               + this.blue[((y + 0 & this.tileSizeMask) + (x + 1 & this.tileSizeMask) * this.tileSizeBase)])
+                               / 4.0F * 0.8F);
 
 
                 this.blue[(y + x * this.tileSizeBase)] += this.alpha[(y + x * this.tileSizeBase)] * 0.01F;

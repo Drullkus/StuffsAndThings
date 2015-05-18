@@ -28,7 +28,7 @@ public class ClientProxy extends CommonProxy {
     public void preInit()
     {
         //cloudFX = new CloudAnimFX(128).texture;
-        testFX = new TestingAnimFX(128).texture;
+        testFX = new TestingAnimFX(64).texture;
     }
 
     @Override
