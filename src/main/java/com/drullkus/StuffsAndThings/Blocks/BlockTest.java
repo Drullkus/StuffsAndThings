@@ -10,6 +10,7 @@ import net.minecraft.util.IIcon;
 public class BlockTest extends Block {
 
     private String texturePath;
+    private String glowTexturePath;
     private IIcon glowTexture;
     private IIcon texture;
 
@@ -17,6 +18,12 @@ public class BlockTest extends Block {
         super(material);
         texturePath = texture;
         glowTexture = backGround;
+    }
+
+    protected BlockTest(Material material, String texture, String backGround) {
+        super(material);
+        texturePath = texture;
+        glowTexturePath = backGround;
     }
 
     public IIcon getGlowTexture()
@@ -45,7 +52,7 @@ public class BlockTest extends Block {
     {
         texture = icon.registerIcon(StuffsAndThings.MOD_ID + ":" + texturePath);
 
-        glowTexture = ClientProxy.testFX;
+        glowTexture = icon.registerIcon(StuffsAndThings.MOD_ID + ":" + glowTexturePath);
 
         this.blockIcon = texture;
     }
