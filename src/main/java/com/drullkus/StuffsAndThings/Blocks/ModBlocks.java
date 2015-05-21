@@ -1,5 +1,6 @@
 package com.drullkus.StuffsAndThings.Blocks;
 
+import com.drullkus.StuffsAndThings.TETest;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,6 +15,7 @@ public class ModBlocks {
 
         GameRegistry.registerBlock(blockSturdy, "sturdyBlock");
         GameRegistry.registerBlock(blockModel, "coolThing");
+        GameRegistry.registerTileEntity(TETest.class, "coolThing");
     }
 
     public static void init() {

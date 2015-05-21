@@ -1,5 +1,6 @@
 package com.drullkus.StuffsAndThings;
 
+import com.drullkus.StuffsAndThings.Blocks.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -20,7 +21,7 @@ public class TETest extends TileEntity {
                 if (this.getRSState())
                 {
                     this.setRSState(true);
-                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                    worldObj.notifyBlockChange(xCoord, yCoord, zCoord, ModBlocks.blockModel);
                 }
             }
             else
@@ -30,7 +31,7 @@ public class TETest extends TileEntity {
                 if (!this.getRSState())
                 {
                     this.setRSState(false);
-                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                    worldObj.notifyBlockChange(xCoord, yCoord, zCoord, ModBlocks.blockModel);
                 }
             }
         }
@@ -41,6 +42,7 @@ public class TETest extends TileEntity {
     {
         super.readFromNBT(tag);
         playerName = tag.getString("OwnerID");
+        RSState = tag.getBoolean("RedstoneState");
     }
 
     @Override
@@ -48,6 +50,7 @@ public class TETest extends TileEntity {
     {
         super.writeToNBT(tag);
         tag.setString("OwnerID", playerName);
+        tag.setBoolean("RedstoneState", RSState);
     }
 
     public void setPlayerName(String name)
