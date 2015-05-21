@@ -1,14 +1,8 @@
 package com.drullkus.StuffsAndThings.Blocks;
 
-import com.drullkus.StuffsAndThings.Proxy.ClientProxy;
-import com.drullkus.StuffsAndThings.StuffsAndThings;
 import com.drullkus.StuffsAndThings.TETest;
-import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
