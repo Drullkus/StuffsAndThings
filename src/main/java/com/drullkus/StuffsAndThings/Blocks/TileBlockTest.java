@@ -64,6 +64,22 @@ public class TileBlockTest extends BlockTest {
         return 0;
     }
 
+    @Override
+    public int isProvidingWeakPower(IBlockAccess blockAccess, int x, int y, int z, int side)
+    {
+        TileEntity te = blockAccess.getTileEntity(x, y, z);
+
+        if (te instanceof TETest)
+        {
+            if (((TETest)te).getRSState())
+            {
+                return 15;
+            }
+        }
+
+        return 0;
+    }
+
     /*@Override // Redundant
     public TileEntity createNewTileEntity(World world, int metadata) {
         return new TETest();

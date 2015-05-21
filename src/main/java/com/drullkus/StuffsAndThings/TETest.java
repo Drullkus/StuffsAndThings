@@ -16,12 +16,22 @@ public class TETest extends TileEntity {
             if (worldObj.getPlayerEntityByName(this.getPlayerName()).getCommandSenderName().equals(this.getPlayerName()))
             {
                 System.out.println("Your name /IS/ " + playerName);
-                this.setRSState(true);
+
+                if (this.getRSState())
+                {
+                    this.setRSState(true);
+                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                }
             }
             else
             {
                 System.out.println("Your name is not " + playerName);
-                this.setRSState(false);
+
+                if (!this.getRSState())
+                {
+                    this.setRSState(false);
+                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                }
             }
         }
     }
