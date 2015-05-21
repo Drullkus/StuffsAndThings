@@ -6,12 +6,14 @@ import net.minecraft.block.material.Material;
 
 public class ModBlocks {
 
-    public static Block blockSturdy;
+    public static Block blockSturdy, blockModel;
     
     public static void preInit() {
         blockSturdy = new BlockTest(Material.rock, "aTexture", "purpleThingAnim").setBlockName("sturdy");
+        blockModel = new TileBlockTest(Material.rock, "aTexture", "puepleThingAnim").setBlockName("modelThing");
 
         GameRegistry.registerBlock(blockSturdy, "sturdyBlock");
+        GameRegistry.registerBlock(blockModel, "coolThing");
     }
 
     public static void init() {

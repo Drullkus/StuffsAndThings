@@ -9,10 +9,10 @@ import net.minecraft.util.IIcon;
 
 public class BlockTest extends Block {
 
-    private String texturePath;
-    private String glowTexturePath;
-    private IIcon glowTexture;
-    private IIcon texture;
+    protected String texturePath;
+    protected String glowTexturePath;
+    protected IIcon glowTexture;
+    protected IIcon texture;
 
     protected BlockTest(Material material, String texture, IIcon backGround) {
         super(material);
@@ -56,4 +56,6 @@ public class BlockTest extends Block {
 
         this.blockIcon = texture;
     }
+
+
 }
