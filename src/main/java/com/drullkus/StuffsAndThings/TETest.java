@@ -6,15 +6,22 @@ import net.minecraft.tileentity.TileEntity;
 public class TETest extends TileEntity {
 
     public String playerName = "";
+    public boolean RSState = false;
 
     @Override
     public void updateEntity()
     {
-        if (worldObj.getPlayerEntityByName(this.getPlayerName()).getCommandSenderName() != null)
+        if (worldObj.getPlayerEntityByName(this.getPlayerName()) != null)
         {
             if (worldObj.getPlayerEntityByName(this.getPlayerName()).getCommandSenderName().equals(this.getPlayerName()))
             {
-
+                System.out.println("Your name /IS/ " + playerName);
+                this.setRSState(true);
+            }
+            else
+            {
+                System.out.println("Your name is not " + playerName);
+                this.setRSState(false);
             }
         }
     }
@@ -30,6 +37,7 @@ public class TETest extends TileEntity {
     public void writeToNBT(NBTTagCompound tag)
     {
         super.writeToNBT(tag);
+        tag.setString("OwnerID", playerName);
     }
 
     public void setPlayerName(String name)
@@ -47,5 +55,15 @@ public class TETest extends TileEntity {
         {
             return "doDa";
         }
+    }
+
+    public boolean getRSState()
+    {
+        return RSState;
+    }
+
+    public void setRSState(boolean newState)
+    {
+        RSState = newState;
     }
 }

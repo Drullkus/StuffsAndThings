@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class TileBlockTest extends BlockTest {
@@ -45,6 +46,22 @@ public class TileBlockTest extends BlockTest {
     public boolean canProvidePower()
     {
         return true;
+    }
+
+    @Override
+    public int isProvidingStrongPower(IBlockAccess blockAccess, int x, int y, int z, int side)
+    {
+        TileEntity te = blockAccess.getTileEntity(x, y, z);
+
+        if (te instanceof TETest)
+        {
+            if (((TETest)te).getRSState())
+            {
+                return 15;
+            }
+        }
+
+        return 0;
     }
 
     /*@Override // Redundant
