@@ -35,6 +35,7 @@ public class StuffsAndThings {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
+        proxy.init();
         ModBlocks.init();
     }
 }
