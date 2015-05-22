@@ -1,6 +1,6 @@
 package com.drullkus.StuffsAndThings.Blocks;
 
-import com.drullkus.StuffsAndThings.TETest;
+import com.drullkus.StuffsAndThings.Tile.TETest;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -78,5 +78,11 @@ public class TileBlockTest extends BlockTest implements ITileEntityProvider {
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
         return new TETest();
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
 }

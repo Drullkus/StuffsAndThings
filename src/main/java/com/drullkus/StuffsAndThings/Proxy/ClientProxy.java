@@ -1,8 +1,14 @@
 package com.drullkus.StuffsAndThings.Proxy;
 
+import com.drullkus.StuffsAndThings.Blocks.TileBlockTest;
+import com.drullkus.StuffsAndThings.Renderer.RendererTESRTest;
 import com.drullkus.StuffsAndThings.Renderer.RendererTestBlock;
+import com.drullkus.StuffsAndThings.Tile.TETest;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class ClientProxy extends CommonProxy {
@@ -14,6 +20,7 @@ public class ClientProxy extends CommonProxy {
 
     }
 
+    @Override
     public void preInit()
     {
 
@@ -21,7 +28,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void init() {
-
+        ClientRegistry.bindTileEntitySpecialRenderer(TETest.class, new RendererTESRTest());
     }
 
     @Override

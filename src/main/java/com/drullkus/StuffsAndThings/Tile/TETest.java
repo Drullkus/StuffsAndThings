@@ -1,4 +1,4 @@
-package com.drullkus.StuffsAndThings;
+package com.drullkus.StuffsAndThings.Tile;
 
 import com.drullkus.StuffsAndThings.Blocks.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +16,7 @@ public class TETest extends TileEntity {
         {
             if (worldObj.getPlayerEntityByName(this.getPlayerName()).getCommandSenderName().equals(this.getPlayerName()))
             {
-                System.out.println("Your name /IS/ " + playerName);
+                //System.out.println("Your name /IS/ " + playerName);
 
                 if (!this.getRSState())
                 {
@@ -26,13 +26,21 @@ public class TETest extends TileEntity {
             }
             else
             {
-                System.out.println("Your name is not " + playerName);
+                //System.out.println("Your name is not " + playerName);
 
                 if (this.getRSState())
                 {
                     this.setRSState(false);
                     worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                 }
+            }
+        }
+        else
+        {
+            if (this.getRSState())
+            {
+                this.setRSState(false);
+                worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             }
         }
     }
