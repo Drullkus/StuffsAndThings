@@ -18,20 +18,20 @@ public class TETest extends TileEntity {
             {
                 System.out.println("Your name /IS/ " + playerName);
 
-                if (this.getRSState())
+                if (!this.getRSState())
                 {
                     this.setRSState(true);
-                    worldObj.notifyBlockChange(xCoord, yCoord, zCoord, ModBlocks.blockModel);
+                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                 }
             }
             else
             {
                 System.out.println("Your name is not " + playerName);
 
-                if (!this.getRSState())
+                if (this.getRSState())
                 {
                     this.setRSState(false);
-                    worldObj.notifyBlockChange(xCoord, yCoord, zCoord, ModBlocks.blockModel);
+                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                 }
             }
         }
@@ -60,7 +60,7 @@ public class TETest extends TileEntity {
 
     public String getPlayerName()
     {
-        if (playerName != null)
+        if (!playerName.isEmpty())
         {
             return playerName;
         }

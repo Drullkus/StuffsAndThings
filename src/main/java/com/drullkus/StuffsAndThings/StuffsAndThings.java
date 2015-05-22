@@ -22,7 +22,7 @@ public class StuffsAndThings {
     public static Logger logger = Logger.getLogger(MOD_ID);
 
     @SidedProxy(clientSide = "com.drullkus.StuffsAndThings.Proxy.ClientProxy",
-                serverSide = "xxx" /*"com.drullkus.StuffsAndThings.Proxy.ServerProxy"*/)
+                serverSide = "com.drullkus.StuffsAndThings.Proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
