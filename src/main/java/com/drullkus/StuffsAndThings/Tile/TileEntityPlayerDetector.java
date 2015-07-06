@@ -4,10 +4,11 @@ import com.drullkus.StuffsAndThings.Blocks.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-public class TETest extends TileEntity {
+public class TileEntityPlayerDetector extends TileEntity {
 
     public String playerName = "";
     public boolean RSState = false;
+    int tick = 0;
 
     @Override
     public void updateEntity()
@@ -31,7 +32,6 @@ public class TETest extends TileEntity {
                 if (this.getRSState())
                 {
                     this.setRSState(false);
-                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                 }
             }
         }
@@ -40,8 +40,15 @@ public class TETest extends TileEntity {
             if (this.getRSState())
             {
                 this.setRSState(false);
-                worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             }
+        }
+
+        tick++;
+
+        if (tick > 10)
+        {
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            tick = 0;
         }
     }
 
@@ -74,7 +81,7 @@ public class TETest extends TileEntity {
         }
         else
         {
-            return "doDa";
+            return "MHF_Alex"; // See http://minecraft.gamepedia.com/Mob_head#Mojang_skins
         }
     }
 

@@ -1,6 +1,6 @@
 package com.drullkus.StuffsAndThings.Blocks;
 
-import com.drullkus.StuffsAndThings.Tile.TETest;
+import com.drullkus.StuffsAndThings.Tile.TileEntityPlayerDetector;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,21 +11,15 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class TileBlockTest extends BlockTest implements ITileEntityProvider {
+public class BlockPlayerDetector extends BlockTest implements ITileEntityProvider {
 
-    protected TileBlockTest(Material material, String texture, IIcon backGround) {
+    protected BlockPlayerDetector(Material material, String texture, IIcon backGround) {
         super(material, texture, backGround);
     }
 
-    protected TileBlockTest(Material material, String texture, String backGround) {
+    protected BlockPlayerDetector(Material material, String texture, String backGround) {
         super(material, texture, backGround);
     }
-
-    /*@Override
-    public TileEntity createTileEntity(World world, int metadata)
-    {
-        return new TETest();
-    }*/
 
     @Override
     public boolean hasTileEntity(int metadata)
@@ -36,7 +30,7 @@ public class TileBlockTest extends BlockTest implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack)
     {
-        TETest te = (TETest)world.getTileEntity(x, y, z);
+        TileEntityPlayerDetector te = (TileEntityPlayerDetector)world.getTileEntity(x, y, z);
         if (entity instanceof EntityPlayer)
         {
             te.setPlayerName(entity.getCommandSenderName());
@@ -62,11 +56,9 @@ public class TileBlockTest extends BlockTest implements ITileEntityProvider {
 
         System.out.println(x + ", " + y + ", " + z + " is being checked!");
 
-        if (te instanceof TETest)
+        if (te instanceof TileEntityPlayerDetector)
         {
-            //System.out.println(x + ", " + y + ", " + z + " is TETest!");
-
-            if (((TETest)te).getRSState())
+            if (((TileEntityPlayerDetector)te).getRSState())
             {
                 return 10;
             }
@@ -77,12 +69,18 @@ public class TileBlockTest extends BlockTest implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TETest();
+        return new TileEntityPlayerDetector();
     }
 
     @Override
     public boolean isOpaqueCube()
     {
         return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
     }
 }

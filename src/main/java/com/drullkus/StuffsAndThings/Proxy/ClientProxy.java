@@ -1,19 +1,16 @@
 package com.drullkus.StuffsAndThings.Proxy;
 
-import com.drullkus.StuffsAndThings.Blocks.TileBlockTest;
-import com.drullkus.StuffsAndThings.Renderer.RendererTESRTest;
-import com.drullkus.StuffsAndThings.Renderer.RendererTestBlock;
-import com.drullkus.StuffsAndThings.Tile.TETest;
+import com.drullkus.StuffsAndThings.Renderer.RendererPlayerDetector;
+import com.drullkus.StuffsAndThings.Renderer.RendererGlowingBlock;
+import com.drullkus.StuffsAndThings.Tile.TileEntityPlayerDetector;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class ClientProxy extends CommonProxy {
 
-    public static int testRenderID;
+    public static int renderBlockGlow;
 
     @Override
     public void registerTileEntities() {
@@ -23,12 +20,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit()
     {
-
+        registerRenderers();
     }
 
     @Override
     public void init() {
-        ClientRegistry.bindTileEntitySpecialRenderer(TETest.class, new RendererTESRTest());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlayerDetector.class, new RendererPlayerDetector());
     }
 
     @Override
@@ -42,8 +39,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void registerRenderers() {
-        testRenderID = RenderingRegistry.getNextAvailableRenderId();
+        renderBlockGlow = RenderingRegistry.getNextAvailableRenderId();
 
-        RenderingRegistry.registerBlockHandler(testRenderID, new RendererTestBlock());
+        RenderingRegistry.registerBlockHandler(renderBlockGlow, new RendererGlowingBlock());
     }
 }
