@@ -29,6 +29,6 @@ public class RendererGlowingBlock implements ISimpleBlockRenderingHandler {
     @Override
     public int getRenderId()
     {
-        return ClientProxy.testRenderID;
+        return ClientProxy.renderBlockGlow;
     }
 }

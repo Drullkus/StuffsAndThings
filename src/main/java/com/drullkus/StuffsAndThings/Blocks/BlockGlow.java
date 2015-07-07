@@ -7,23 +7,27 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-public class BlockTest extends Block {
+public class BlockGlow extends Block {
 
     protected String texturePath;
     protected String glowTexturePath;
     protected IIcon glowTexture;
     protected IIcon texture;
 
-    protected BlockTest(Material material, String texture, IIcon backGround) {
+    protected BlockGlow(Material material, String texture, IIcon backGround) {
         super(material);
         texturePath = texture;
         glowTexture = backGround;
+        setHardness(50);
+        setResistance(9001);
     }
 
-    protected BlockTest(Material material, String texture, String backGround) {
+    protected BlockGlow(Material material, String texture, String backGround) {
         super(material);
         texturePath = texture;
         glowTexturePath = backGround;
+        setHardness(50);
+        setResistance(9001);
     }
 
     public IIcon getGlowTexture()
@@ -34,7 +38,7 @@ public class BlockTest extends Block {
     @Override
     public int getRenderType()
     {
-        return ClientProxy.testRenderID;
+        return ClientProxy.renderBlockGlow;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.drullkus.StuffsAndThings.Proxy;
 
-import com.drullkus.StuffsAndThings.Renderer.RendererPlayerDetector;
+import com.drullkus.StuffsAndThings.Renderer.RendererPortalGenerator;
 import com.drullkus.StuffsAndThings.Renderer.RendererGlowingBlock;
-import com.drullkus.StuffsAndThings.Tile.TileEntityPlayerDetector;
+import com.drullkus.StuffsAndThings.Tile.TileEntityProvocateur;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void init() {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlayerDetector.class, new RendererPlayerDetector());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityProvocateur.class, new RendererPortalGenerator());
     }
 
     @Override
